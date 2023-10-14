@@ -12,20 +12,14 @@ public class Exhibition {
     private String id;
     private String name;
 
-    private Binary exhibitionCode;
-
-    public Exhibition(String name, Binary exhibitionCode) {
+    public Exhibition(String name) {
         this.name = name;
-        this.exhibitionCode = exhibitionCode;
     }
 
     public String getId() {
         return id;
     }
 
-    public Binary getCode() {
-        return exhibitionCode;
-    }
 
     @Override
     public boolean equals(Object object) {

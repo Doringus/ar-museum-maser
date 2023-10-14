@@ -10,26 +10,29 @@ public class File {
     @Id
     private String id;
     private String name;
-    private String contentType;
-    private long size;
     private Date uploadDate;
-    private String md5;
     private byte[] content;
-    private String path;
+    private long size;
     protected File() {
     }
 
-    public File(String name, String contentType, long size/*,byte[] content*/) {
+    public File(String name, long size, byte[] content) {
         this.name = name;
-        this.contentType = contentType;
-        this.size = size;
         this.uploadDate = new Date();
-     //   this.content = content;
+        this.content = content;
+        this.size = size;
+    }
+
+    public byte[] getContent() {
+        return content;
     }
 
     public String getId() {
         return id;
     }
+    public String getName() { return name;}
+    public long getSize() { return size;}
+
 
     @Override
     public boolean equals(Object object) {
@@ -40,27 +43,23 @@ public class File {
             return false;
         }
         File fileInfo = (File) object;
-        return java.util.Objects.equals(size, fileInfo.size)
-                && java.util.Objects.equals(name, fileInfo.name)
-                && java.util.Objects.equals(contentType, fileInfo.contentType)
+        return  java.util.Objects.equals(name, fileInfo.name)
                 && java.util.Objects.equals(uploadDate, fileInfo.uploadDate)
-                && java.util.Objects.equals(md5, fileInfo.md5)
-                && java.util.Objects.equals(id, fileInfo.id);
+                && java.util.Objects.equals(id, fileInfo.id)
+                && java.util.Objects.equals(size, fileInfo.size);
     }
 
     @Override
     public int hashCode() {
-        return java.util.Objects.hash(name, contentType, size, uploadDate, md5, id);
+        return java.util.Objects.hash(name, uploadDate, id, size);
     }
 
     @Override
     public String toString() {
         return "File{"
                 + "name='" + name + '\''
-                + ", contentType='" + contentType + '\''
-                + ", size=" + size
                 + ", uploadDate=" + uploadDate
-                + ", md5='" + md5 + '\''
+                + ", size =" + size
                 + ", id='" + id + '\''
                 + '}';
     }
