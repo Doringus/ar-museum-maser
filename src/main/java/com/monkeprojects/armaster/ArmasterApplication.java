@@ -56,10 +56,14 @@ public class ArmasterApplication {
 	 * Remove later
 	 */
 	@GetMapping(value = "/mock_post")
-	public void mockPost() throws Exception {
+	public void mockPost(@RequestParam(name = "path") String pathToModel) throws Exception {
+		if(pathToModel == null) {
+			throw new Exception();
+		}
+	//	"/home/dskom/home_projects/Archive.zip"
 		var exhibition = exhibitionRepository.insert(new Exhibition("Test exhibition"));
 		this.exhibitionId = exhibition.getId();
-		Path path = Paths.get("/home/dskom/home_projects/Archive.zip");
+		Path path = Paths.get(pathToModel);
 		var model = fileRepository.insert(new File(path.getFileName().toString(), Files.size(path), Files.readAllBytes(path)));
 		modelId = model.getId();
 	}
