@@ -34,7 +34,7 @@ public class ArmasterApplication {
 
 	// Used only for first demo
 	String exhibitionId;
-	String modelId;
+	String modelId ="test";
 
 	@Autowired
 	private FileRepository fileRepository;
